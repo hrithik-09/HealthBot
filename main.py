@@ -8,7 +8,7 @@ from flask import Flask, render_template_string, request
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 
-def generate_tutorial(disease):
+def generate_information(disease):
 
  response = openai.ChatCompletion.create(
 
@@ -50,7 +50,7 @@ def hello():
 
   disease = request.form['disease']
 
-  output = generate_tutorial(disease)
+  output = generate_information(disease)
 
 
  return render_template_string('''
@@ -226,13 +226,13 @@ def hello():
 
 @app.route('/generate', methods=['POST'])
 
-# This code defines a function 'generate' that takes a POST request containing a 'disease' field and returns the result of calling the 'generate_tutorial' function with the provided disease as input.
+# This code defines a function 'generate' that takes a POST request containing a 'disease' field and returns the result of calling the 'generate_information' function with the provided disease as input.
 
 def generate():
 
  disease = request.form['disease']
 
- return generate_tutorial(disease)
+ return generate_information(disease)
 
 # This code snippet starts the Flask application if the script is being run directly as the main program, running on the IP address '0.0.0.0' and port number 8080.
 
